@@ -1,4 +1,4 @@
-const btnTry = document.querySelector('#btnTry');
+const btnTry = document.querySelectorAll('.btnTry')
 const btnReset = document.querySelector('#btnReset');
 const screen1 = document.querySelector('.screen1');
 const screen2 = document.querySelector('.screen2');
@@ -6,10 +6,11 @@ const screen2 = document.querySelector('.screen2');
 let randomNumber = newRandomNumber();
 let xAttempts = 1;
 
-btnTry.addEventListener('click', handleTryClick);
+btnTry.forEach(element => element.addEventListener('click', e => { handleTryClick(e, element); }));
 btnReset.addEventListener('click', handleResetClick);
 
 function newRandomNumber(){
+    btnTry.forEach(element => element.disabled = false); // ativar os botöes novamente
     let _min = 1; // está incluso
     let _max = 9; // está incluso
     return Math.floor(Math.random() * (_max - _min + 1) + _min);
@@ -28,25 +29,26 @@ document.addEventListener('keydown',
     }
 })
 
- function handleTryClick(event){
-    event.preventDefault();
-    const inputNumber = document.querySelector('#inputNumber');
+ function handleTryClick(event, element){
+     event.preventDefault();
 
-    let error = isNaN(inputNumber.value) || inputNumber.value <= 0 || inputNumber.value >= 10 
-    || inputNumber.value == null || inputNumber.value == '';
+     element.disabled = true; // desativar botão ao clicar
+    const inputNumber = element.innerHTML;
+
+    let error = isNaN(inputNumber) || inputNumber <= 0 || inputNumber >= 10 
+    || inputNumber == null || inputNumber == '';
 
     if (error){
-        alert('Digite um número válido entre 0 e 10');
+        alert('Algo está errado, número não aceito');
         return;
     }else{
-        if(inputNumber.value == randomNumber){
+        if(inputNumber == randomNumber){
             toggleScreen();
             screen2.querySelector("h2").innerText = `Acertou em ${xAttempts} tentativas`;
         }
     }
 
     xAttempts++;
-    inputNumber.value = '';
  }
 
  function handleResetClick(){

@@ -23,7 +23,6 @@ body{
     background: #FFFFFF;
     
     width: min(42.8rem, 90%);
-    height: 27.3rem;
     
     border-radius: 6px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -57,6 +56,7 @@ main p{
     margin-top: 4.8rem;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 /* screen 1 */
@@ -76,14 +76,21 @@ input{
 
 button{
     background: #7879F1;
-    border-radius: 0 4px 4px 0;
+    border-radius: 4px 4px 4px 4px;
     color: #FFFFFF;
     font-family: 'DM Sans';
+    margin: 0.1rem;
+    flex: 1 0 31%; /* explanation below */
 }
 
 button:hover{
     cursor: pointer;
     background: #5151a9;
+}
+
+button:disabled{
+    cursor: initial;
+    background: #6969b1;
 }
 
 /* screen 2*/
