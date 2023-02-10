@@ -1,3 +1,5 @@
+## Originalmente feito por [viniseven](https://github.com/viniseven)
+
 # Guessing Number
 
 Page simples com scrpt para adivinhação de um número gerado randomicamente.
